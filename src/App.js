@@ -8,7 +8,7 @@ import Forecast from './Forecast';
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Moment from 'react-moment';
-import YouTube from 'react-youtube';
+import desktopImage from './bg.jpg';
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`
@@ -62,7 +62,7 @@ class App extends React.Component {
   render() {
     const date = new Date();
     if (!this.state.weather) // state.weather 이 없으면,
-    return <div className="App App-header" style={{ color: 'white' }}>
+    return <div className="App App-header" style={{ color: 'white'}}>
       <HashLoader 
       css={override}
       sizeUnit={"px"}
@@ -74,6 +74,7 @@ class App extends React.Component {
     </div>
 
     return (
+      <div className="App">
       <div className="App-header container-fluid text-white my-auto">
         <div className="container mx-auto my-4 py-4">
           <div className="row justify-content-center text-center">
@@ -97,7 +98,7 @@ class App extends React.Component {
         </div>
         <Forecast />
       </div>
-
+      </div>
       
     )
   }

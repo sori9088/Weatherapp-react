@@ -1,6 +1,5 @@
 body {
   height: 100%;
-  background-color: black;
 }
 
 .App {
@@ -12,7 +11,6 @@ body {
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,7 +28,19 @@ h1 {
   color: #09d3ac;
 }
 
+h2 {
+  text-shadow: 0 0 3px rgb(8, 8, 8),0 0 5px rgb(0, 0, 0); 
+}
+
 span {
   font-size: 20px;
 }
 
+.App {
+  background-image: url("bg.jpg");
+  height: 100vh;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}

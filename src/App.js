@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
@@ -6,6 +5,10 @@ import { css } from '@emotion/core';
 // First way to import
 import { HashLoader } from 'react-spinners';
 import Forecast from './Forecast';
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Moment from 'react-moment';
+import YouTube from 'react-youtube';
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`
@@ -20,7 +23,8 @@ class App extends React.Component {
     this.state = {
       weather: null, //초기값 설정
       loading: true,
-      hasError: false
+      hasError: false,
+      videoURL: 'https://youtu.be/uNCr7NdOJgw'
     }
   }
   componentDidMount() { // 이 안에서 다른 JavaScript 프레임워크를 연동
@@ -48,11 +52,15 @@ class App extends React.Component {
     else{
       alert(' 404');
     }
-
+  }
+  
+  Update = (event) => {
+    window.location.reload(false);
   }
 
+
   render() {
-  
+    const date = new Date();
     if (!this.state.weather) // state.weather 이 없으면,
     return <div className="App App-header" style={{ color: 'white' }}>
       <HashLoader 
@@ -65,21 +73,32 @@ class App extends React.Component {
       <h3>loading...</h3>
     </div>
 
-
     return (
       <div className="App-header container-fluid text-white my-auto">
         <div className="container mx-auto my-4 py-4">
           <div className="row justify-content-center text-center">
-            <h1 className="col-12 display-4 my-2 py-3">
-              Awesome Weather App
+            <h1 className="col-12 display-3 my-2 py-4">
+              HOW'S THE WEATHER?
             </h1>
-            <h2 className="col-12">{this.state.weather && this.state.weather.name}</h2>
+            <h3 className="col-12">{this.state.weather && this.state.weather.name}</h3>
             <h3 className="col-12 text-danger">Temp : {this.state.weather && this.state.weather.main.temp}°C</h3>
-            <h3 className="col-12"><img src = {`http://openweathermap.org/img/w/${this.state.weather.weather[0].icon}.png`}></img>{this.state.weather && this.state.weather.weather[0].description}</h3>
+            <h5 className="col-12">{this.state.weather && this.state.weather.main.temp_max}°C | {this.state.weather && this.state.weather.main.temp_min}°C</h5>
+            <h2 className="col-12"><img src = {`http://openweathermap.org/img/w/${this.state.weather.weather[0].icon}.png`} />{this.state.weather && this.state.weather.weather[0].description}</h2>
+            <span>Updated as of &nbsp;
+              <Moment format="HH:mm">
+                {date}
+              </Moment>&nbsp;</span>
+              <FontAwesomeIcon 
+              icon={faSyncAlt} spin 
+              onClick={this.Update.bind(this)}
+              style={{ cursor: 'pointer' }} />
+                   
           </div>
         </div>
         <Forecast />
       </div>
+
+      
     )
   }
 }

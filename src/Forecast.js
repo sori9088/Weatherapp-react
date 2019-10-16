@@ -27,6 +27,9 @@ import { Card } from 'react-bootstrap';
     <div className="container-fluid text-white my-auto">
        <div className="container mx-auto my-4 py-4">
          <div className="row justify-content-center text-center">
+         <h2 className="col-12 display-4 my-2 py-3">
+              Hourly Forecast
+            </h2>
            <div className="d-flex col-12">
            {forecast && forecast.list.slice(2,7).map((weather)=>
            <Card bg="dark" border="danger" text="white" style={{ width: '18rem' }}>
@@ -38,16 +41,16 @@ import { Card } from 'react-bootstrap';
              <Card.Subtitle className="mb-2 text-danger"> 
              {weather.main.temp}°C</Card.Subtitle>
              <Card.Text>
+             <img src = {`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} />
+             </Card.Text>
+             <Card.Text>
              {weather.weather[0].description}
-             <img src = {`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}></img>
              </Card.Text>
            </Card.Body>
          </Card>
            
  )}</div>
-           {/* <h3 className="col-12 text-danger">Temperature {forecast && forecast.main.temp}°C</h3>
-          <h3 className="col-12">Weather Description {forecast && forecast.weather[0].description}</h3> */}
-         </div>
+          </div>
        </div>
      </div>
   )
